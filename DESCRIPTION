@@ -7,4 +7,4 @@ Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
 Description: OpenCPU application to plot footprint change in Alberta, Canada.
 License: GPL
-Imports: ggplot2
+Depends: ggplot2

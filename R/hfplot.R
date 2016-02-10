@@ -16,6 +16,7 @@ hfplot <- function (
         "Forest Harvest")) {
     region <- match.arg(region)
     type <- match.arg(type)
+    data(hf, package="footprintchange")
     Year <- c(1999, 2001, 2002:2014)
     Footprint <- hf[region,type,]
     Rate <- diff(range(Footprint)) / diff(range(Year))

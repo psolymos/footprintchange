@@ -1,2 +1,1 @@
 export(hfplot)
-importFrom(ggplot2, qplot)
