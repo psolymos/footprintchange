@@ -17,26 +17,26 @@
 <script src="bootstrap/js/bootstrap.js"> </script>
 <script src="jqueryui/jquery-ui-1.10.3.custom.js"> </script>
 
-<script> 
+<script>
 $(function(){
 
   //optional, requires jquery-ui.
   $("#plotdiv").resizable()
-  
+
   //button handler
   $("#plotbutton").on("click", function(e){
     e.preventDefault();
     $("#plotbutton").attr("disabled", "disabled")
-    var req = $("#plotdiv").rplot("hfplot", {
-      region : $("#region").val(),
-      type : $("#type").val()
+    var req = $("#plotdiv").rplot("xxplot", {
+      type : $("#type").val(),
+      col : $("#col").val()
     }).always(function(){
       $("#plotbutton").removeAttr("disabled");
     }).fail(function(){
       alert("HTTP error " + req.status + ": " + req.responseText);
     });
   });
-  
+
   //plot the default values on page load
   $("#plotbutton").trigger("click")
 });
@@ -68,7 +68,7 @@ $(function(){
     <div class="page-header">
       <h1>Human footprint change in Alberta</h1>
     </div>
-    
+
     <div class="row">
       <div class="span3">
 
@@ -76,42 +76,31 @@ $(function(){
           <fieldset>
             <legend>Settings</legend>
 
-            <label>Region of interest</label> 
-            <select class="input-medium" id="region">
-              <option value="Alberta">Alberta</option>
-              <option value="CanadianShield">Canadian Shield</option>
-              <option value="Boreal">Boreal</option>
-              <option value="Foothills">Foothills</option>
-              <option value="RockyMountain">Rocky Mountain</option>
-              <option value="Parkland">Parkland</option>
-              <option value="Grassland">Grassland</option>
-            </select> 
-
-            <label>Footprint type</label> 
+            <label>Type</label>
             <select class="input-medium" id="type">
-              <option value="Total">Total</option>
-              <option value="HumancreatedWaterBodies">Human-created Water Bodies</option>
-              <option value="Agriculture">Agriculture</option>
-              <option value="UrbanRuralIndustrial">Urban, Rural and Industrial</option>
-              <option value="MinesWellsOtherEnergyFeatures">Mines, Wells and Other Energy Features</option>
-              <option value="VegetatedLinearIndustrialFeatures">Vegetated Linear Industrial Features</option>
-              <option value="Transportation">Transportation</option>
-              <option value="ForestHarvest">Forest Harvest</option>
-            </select> 
-            
+              <option value="normal">Normal</option>
+              <option value="lognormal">Lognormal</option>
+            </select>
+
+            <label>Color</label>
+            <select class="input-medium" id="col">
+              <option value="black">Black</option>
+              <option value="red">Red</option>
+            </select>
+
             <br />
-            
+
             <button class="btn btn-small btn-primary" id="plotbutton"><i class="icon-ok icon-white"></i> Update plot</button>
           </fieldset>
         </form>
         <p>This is a demo based on ABMI human footprint data explained <a href="http://species.abmi.ca/pages/habitat/footprint-change.html">here</a>.</p>
       </div>
-      
+
       <div class="span9">
         <div id="plotdiv"></div>
       </div>
     </div>
-      
+
   </div>
 </body>
 </html>

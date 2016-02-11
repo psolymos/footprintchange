@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Gitstats OpenCPU application</title>
+<title>Human footprint change in Alberta</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -17,8 +17,6 @@
 <script src="bootstrap/js/bootstrap.js"> </script>
 <script src="jqueryui/jquery-ui-1.10.3.custom.js"> </script>
 
-
-
 <script> 
 $(function(){
 
@@ -29,10 +27,9 @@ $(function(){
   $("#plotbutton").on("click", function(e){
     e.preventDefault();
     $("#plotbutton").attr("disabled", "disabled")
-    var req = $("#plotdiv").rplot("gitstats", {
-      id : $("#githubid").val(),
-      type : $("#type").val(),
-      max : parseInt($("#max").val())      
+    var req = $("#plotdiv").rplot("hfplot", {
+      region : $("#region").val(),
+      type : $("#type").val()
     }).always(function(){
       $("#plotbutton").removeAttr("disabled");
     }).fail(function(){
@@ -69,7 +66,7 @@ $(function(){
   <div class="container">
 
     <div class="page-header">
-      <h1>Github Stats Plot</h1>
+      <h1>Human footprint change in Alberta</h1>
     </div>
     
     <div class="row">
@@ -77,24 +74,37 @@ $(function(){
 
         <form class="well" id="paramform">
           <fieldset>
-            <legend>Plot Parameters</legend>
-            <label>User / Organization Name</label> 
-            <input class="input-medium" id="githubid" type="text" value="hadley"></input>
+            <legend>Settings</legend>
 
-            <label>Type</label> 
-            <select class="input-medium" id="type">
-              <option value="users">Github User</option>
-              <option value="orgs">Github Organization</option>
+            <label>Region of interest</label> 
+            <select class="input-medium" id="region">
+              <option value="Alberta">Alberta</option>
+              <option value="CanadianShield">Canadian Shield</option>
+              <option value="Boreal">Boreal</option>
+              <option value="Foothills">Foothills</option>
+              <option value="RockyMountain">Rocky Mountain</option>
+              <option value="Parkland">Parkland</option>
+              <option value="Grassland">Grassland</option>
             </select> 
-            
-            <label>Max Repos</label> 
-            <input class="input-medium" type="number" id="max" min="5" max="50" value="20" />
+
+            <label>Footprint type</label> 
+            <select class="input-medium" id="type">
+              <option value="Total">Total</option>
+              <option value="HumancreatedWaterBodies">Human-created Water Bodies</option>
+              <option value="Agriculture">Agriculture</option>
+              <option value="UrbanRuralIndustrial">Urban, Rural and Industrial</option>
+              <option value="MinesWellsOtherEnergyFeatures">Mines, Wells and Other Energy Features</option>
+              <option value="VegetatedLinearIndustrialFeatures">Vegetated Linear Industrial Features</option>
+              <option value="Transportation">Transportation</option>
+              <option value="ForestHarvest">Forest Harvest</option>
+            </select> 
             
             <br />
             
-            <button class="btn btn-small btn-primary" id="plotbutton"><i class="icon-ok icon-white"></i> Update Plot</button>
+            <button class="btn btn-small btn-primary" id="plotbutton"><i class="icon-ok icon-white"></i> Update plot</button>
           </fieldset>
         </form>
+        <p>This is a demo based on ABMI human footprint data explained <a href="http://species.abmi.ca/pages/habitat/footprint-change.html">here</a>.</p>
       </div>
       
       <div class="span9">
@@ -102,23 +112,6 @@ $(function(){
       </div>
     </div>
       
-    <div class="row">
-      <div class="span12">
-        <h3>About</h3>
-        <p>This is a simple OpenCPU application. Below some example API's to access the R source code and manual pages.</p>
-        
-        <table class="table table-striped">
-          <tr><th>Resource</th> <th>link</th> <th>API URL</th></tr>
-          <tr><td>Package Info</td> <td><a href=".." target="blank">link</a></td> <td><code>GET /library/package</code></td> </tr>       
-          <tr><td>Package Objects</td><td> <a href="../R" target="blank">link</a></td><td><code>GET /library/package/R</code></td></tr>           
-          <tr><td>Function Source</td><td><a href="../R/gitstats/print" target="blank">link</a></td><td><code>GET /library/package/R/function/print</code></td></tr>
-          <tr><td>Help Page (txt)</td><td><a href="../man/gitstats/text" target="blank">link</a></td><td><code>GET /library/package/man/function/text</code></td></tr>   
-          <tr><td>Help Page (html)</td><td><a href="../man/gitstats/html" target="blank">link</a></td><td><code>GET /library/package/man/function/html</code></td></tr>
-          <tr><td>Help Page (pdf)</td><td><a href="../man/gitstats/pdf" target="blank">link</a></td><td><code>GET /library/package/man/function/pdf</code></td></tr>          
-        </table>
-               
-      </div>
-    </div>
   </div>
 </body>
 </html>
