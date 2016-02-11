@@ -29,7 +29,7 @@ $(function(){
     $("#plotbutton").attr("disabled", "disabled")
     var req = $("#plotdiv").rplot("hfplot", {
       region : $("#region").val(),
-      type : $("#type").val())      
+      type : $("#type").val()
     }).always(function(){
       $("#plotbutton").removeAttr("disabled");
     }).fail(function(){

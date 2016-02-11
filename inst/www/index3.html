@@ -29,7 +29,7 @@ $(function(){
     $("#plotbutton").attr("disabled", "disabled")
     var req = $("#plotdiv").rplot("xxplot", {
       type : $("#type").val(),
-      col : $("#col").val())
+      col : $("#col").val()
     }).always(function(){
       $("#plotbutton").removeAttr("disabled");
     }).fail(function(){
