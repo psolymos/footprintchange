@@ -1,1 +1,1 @@
-export(hfplot, xxplot)
+export(hfplot, xxplot, gitstats)
